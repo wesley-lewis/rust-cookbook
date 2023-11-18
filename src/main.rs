@@ -3,9 +3,13 @@
 
 mod algorithms;
 mod command_line;
+mod compression;
 
-use command_line::colorful_terminal::run_beautiful_terminal;
+use compression::decompress_tarball::run;
 
 fn main() {
-    run_beautiful_terminal();
+    run();
 }
+
+// Concurrency and Parallelism
+// Crossbeam crate
