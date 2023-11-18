@@ -1,13 +1,27 @@
 #![allow(unused_assignments)]
 
 use rand::prelude::*;
+use rand::distributions::Alphanumeric;
 
 fn main() {
     let mut rng: ThreadRng = rand::thread_rng();
     rng = generate_random_numbers(rng);
     rng = generate_with_range(rng, 0, 10);
+    generate_random_password(20);
 }
 
+fn generate_random_password(size: usize) {
+    prints("Random Password");
+
+    let rand_string: String = thread_rng()
+        .sample_iter(&Alphanumeric)
+        .take(size)
+        .map(char::from)
+        .collect();
+
+    println!("{}", rand_string);
+
+}
 
 fn generate_random_numbers(mut rng: ThreadRng) -> ThreadRng {
     prints("Generate random numbers");
@@ -31,6 +45,8 @@ fn generate_with_range(mut rng:ThreadRng, start: i32, end: i32) -> ThreadRng {
 
     rng
 }
+
+
 
 fn prints(value: &str) {
     println!("\n-----------------------------------{}-------------------------------------", value);
